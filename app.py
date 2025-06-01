@@ -4,8 +4,9 @@ from transformers import T5Tokenizer, T5ForConditionalGeneration
 app = Flask(__name__)
 
 # MODEL_NAME = "indonlp/cendol-mt5-small-chat"
-# MODEL_NAME = "Wikidepia/IndoT5-base-paraphrase"
-MODEL_NAME = "cahya/t5-base-indonesian-summarization-cased"
+MODEL_NAME = "Wikidepia/IndoT5-base-paraphrase"
+# MODEL_NAME = "cahya/t5-base-indonesian-summarization-cased"
+# MODEL_NAME = "google/mt5-small"
 tokenizer = T5Tokenizer.from_pretrained(MODEL_NAME)
 model = T5ForConditionalGeneration.from_pretrained(MODEL_NAME)
 
@@ -30,7 +31,7 @@ def paraphrase():
         input_ids,
         min_length=min_length,
         max_length=max_length,
-        num_beams=1,              # Lebih cepat
+        num_beams=2,              # Lebih cepat
         repetition_penalty=1.5,
         length_penalty=1.0,
         no_repeat_ngram_size=2,
@@ -71,7 +72,6 @@ def paraphrase():
     #         ...
     #     )
     #     summary_text = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
-
     return jsonify({"result": summary_text.strip()})
 
 @app.route("/", methods=["GET"])
