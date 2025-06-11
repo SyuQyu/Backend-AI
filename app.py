@@ -4,8 +4,8 @@ from transformers import T5Tokenizer, T5ForConditionalGeneration
 app = Flask(__name__)
 
 # MODEL_NAME = "indonlp/cendol-mt5-small-chat"
-MODEL_NAME = "Wikidepia/IndoT5-base-paraphrase"
-# MODEL_NAME = "cahya/t5-base-indonesian-summarization-cased"
+# MODEL_NAME = "Wikidepia/IndoT5-base-paraphrase"
+MODEL_NAME = "cahya/t5-base-indonesian-summarization-cased"
 # MODEL_NAME = "google/mt5-small"
 tokenizer = T5Tokenizer.from_pretrained(MODEL_NAME)
 model = T5ForConditionalGeneration.from_pretrained(MODEL_NAME)
